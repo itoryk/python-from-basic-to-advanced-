@@ -1,0 +1,32 @@
+from marshmallow import validates, post_load
+
+from models import get_book_by_title, Book, Author
+from flasgger import Schema, fields, ValidationError
+
+
+class BookSchema(Schema):
+    id = fields.Int(dump_only=True)
+    title = fields.Str(required=True)
+    author = fields.Str(required=True)
+
+    @validates('title')
+    def validate_title(self, title: str) -> None:
+        if get_book_by_title(title) is not None:
+            raise ValidationError(
+                'Book with title "{title}" already exists, '
+                'please use a different title.'.format(title=title)
+            )
+
+    @post_load
+    def create_book(self, data: dict) -> Book:
+        return Book(**data)
+
+
+class AuthorSchema(Schema):
+    author_id = fields.Int(dump_only=True)
+    first_name = fields.Str(required=True)
+    last_name = fields.Str(required=True)
+
+    @post_load
+    def create_book(self, data: dict) -> Author:
+        return Author(**data)

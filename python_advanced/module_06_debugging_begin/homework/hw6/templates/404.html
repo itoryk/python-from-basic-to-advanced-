@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>page not found</title>
+</head>
+<body>
+<h3>page not found. try to follow the link </h3>
+list of available pages:<br>
+
+<body>
+    {% for link in links %}
+        <a href="{{ link[0] }}" >{{ link[1] }}</a></br>
+        {% if link[0] == '/cats' %}
+            <a href="{{ link[0] }}/1" >{{ link[1] }}/1</a></br>
+        {% endif %}
+    {% endfor %}
+</body>
+</body>
+</html>

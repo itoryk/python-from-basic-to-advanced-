@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+{% if book %}
+<table class="CustomTable">
+    <thead>
+    <tr>
+        <th>Description</th>
+        <th>Number of views</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>
+            {{ book[1] }}
+        </td>
+        <td>
+            {{ book[2] }}
+        </td>
+    </tr>
+    </tbody>
+</table>
+{% else %}
+<h2>No description</h2>
+{% endif %}
+<a href="/books">Return to home page</a>
+{% endblock %}

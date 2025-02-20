@@ -1,0 +1,46 @@
+definitions:
+  Book:
+    properties:
+      author:
+        type: integer
+      id:
+        readOnly: true
+        type: integer
+      title:
+        type: string
+    required:
+      - author
+      - title
+    type: object
+  BookPatch:
+    properties:
+      author:
+        type: integer
+      id:
+        readOnly: true
+        type: integer
+      title:
+        type: string
+    type: object
+info:
+  title: BookList
+  version: 1.0.0
+
+paths:
+  "api/books":
+    post:
+      tags:
+        - book
+      parameters:
+        - in: body
+          name: параметры новой книги
+          schema:
+             "$ref": '#definitions/Book'
+      responses:
+       '201':
+         description: книга была создана
+         schema:
+            "$ref": '#definitions/Book'
+      summary: This is an endpoint for book creation.
+
+swagger: '2.0'

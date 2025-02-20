@@ -1,0 +1,42 @@
+definitions:
+  Book:
+    properties:
+      author:
+        type: integer
+      id:
+        readOnly: true
+        type: integer
+      title:
+        type: string
+    required:
+      - author
+      - title
+    type: object
+  BookPatch:
+    properties:
+      author:
+        type: integer
+      id:
+        readOnly: true
+        type: integer
+      title:
+        type: string
+    type: object
+info:
+  title: BookList
+  version: 1.0.0
+
+paths:
+  "api/books":
+    get:
+      tags:
+       - books
+      responses:
+        '200':
+          description: Book data
+          schema:
+            type: array
+            items:
+              "$ref": '#definitions/Book'
+
+swagger: '2.0'
